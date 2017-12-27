@@ -1,6 +1,7 @@
 #include "dense_graph.cpp"
 #include "digraph_dfs.cpp"
 #include "transitive_closure.cpp"
+#include "top_sort.cpp"
 #include <iostream>
 
 void test_digraph_dfs(DenseGraph& G) {
@@ -12,6 +13,14 @@ void test_transitive_closure(DenseGraph& G) {
   std::cout << test.is_reachable(0, 11) << std::endl;
   std::cout << test.is_reachable(12, 8) << std::endl;
   std::cout << test.is_reachable(8, 12) << std::endl;
+}
+
+void test_topological_sort(DenseGraph& G) {
+  TopologicalSort<DenseGraph> test(G);
+  std::vector<int> rev_topological_sort = test.get_reversed_order();
+  for(auto i:rev_topological_sort)
+    std::cout << i << " ";
+  std::cout << std::endl;
 }
 
 int main() {
@@ -41,6 +50,27 @@ int main() {
 
   test_digraph_dfs(G);
   test_transitive_closure(G);
+
+  DenseGraph H(13, true);
+  H.add_edge(Edge(0, 1));
+  H.add_edge(Edge(0, 2));
+  H.add_edge(Edge(0, 3));
+  H.add_edge(Edge(0, 5));
+  H.add_edge(Edge(0, 6));
+  H.add_edge(Edge(2, 3));
+  H.add_edge(Edge(3, 4));
+  H.add_edge(Edge(3, 5));
+  H.add_edge(Edge(6, 4));
+  H.add_edge(Edge(6, 9));
+  H.add_edge(Edge(8, 7));
+  H.add_edge(Edge(7, 6));
+  H.add_edge(Edge(4, 9));
+  H.add_edge(Edge(9, 10));
+  H.add_edge(Edge(9, 11));
+  H.add_edge(Edge(9, 12));
+  H.add_edge(Edge(11, 12));
+
+  test_topological_sort(H);
 
   return 0;
 }
