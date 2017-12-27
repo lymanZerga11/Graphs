@@ -10,7 +10,7 @@ public:
   DenseGraph(int v_count, bool _directed) : directed(_directed){
     adjacency_matrix = std::vector<std::vector<bool> >(v_count, std::vector<bool>(v_count, false));
   };
-  DenseGraph(const DenseGraph& G) : adjacency_matrix(G.adjacency_matrix) {}
+  DenseGraph(const DenseGraph& G) : adjacency_matrix(G.adjacency_matrix), directed(G.directed){}
   DenseGraph operator=(const DenseGraph& G) {
     adjacency_matrix = G.adjacency_matrix;
     return *this;

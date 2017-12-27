@@ -1,6 +1,18 @@
 #include "dense_graph.cpp"
 #include "digraph_dfs.cpp"
+#include "transitive_closure.cpp"
 #include <iostream>
+
+void test_digraph_dfs(DenseGraph& G) {
+  DFS<DenseGraph> test(G);
+}
+
+void test_transitive_closure(DenseGraph& G) {
+  TransitiveClosure<DenseGraph> test(G);
+  std::cout << test.is_reachable(0, 11) << std::endl;
+  std::cout << test.is_reachable(12, 8) << std::endl;
+  std::cout << test.is_reachable(8, 12) << std::endl;
+}
 
 int main() {
   DenseGraph G(13, true);
@@ -26,7 +38,9 @@ int main() {
   G.add_edge(Edge(6, 4));
   G.add_edge(Edge(6, 9));
   G.add_edge(Edge(7, 6));
-  //G.print_adj(std::cout);
-  DFS<DenseGraph> test(G);
+
+  test_digraph_dfs(G);
+  test_transitive_closure(G);
+
   return 0;
 }
