@@ -1,9 +1,10 @@
+#include <iostream>
+
 #include "dense_graph.cpp"
 #include "digraph_dfs.cpp"
 #include "transitive_closure.cpp"
 #include "dfs_top_sort.cpp"
 #include "sq_top_sort.cpp"
-#include <iostream>
 
 void test_digraph_dfs(DenseGraph& G) {
   DFS<DenseGraph> test(G);
