@@ -1,7 +1,8 @@
 #include "dense_graph.cpp"
 #include "digraph_dfs.cpp"
 #include "transitive_closure.cpp"
-#include "top_sort.cpp"
+#include "dfs_top_sort.cpp"
+#include "sq_top_sort.cpp"
 #include <iostream>
 
 void test_digraph_dfs(DenseGraph& G) {
@@ -16,8 +17,14 @@ void test_transitive_closure(DenseGraph& G) {
 }
 
 void test_topological_sort(DenseGraph& G) {
-  TopologicalSort<DenseGraph> test(G);
-  std::vector<int> rev_topological_sort = test.get_reversed_order();
+  DFSTopologicalSort<DenseGraph> test_dfs(G);
+  std::vector<int> rev_topological_sort = test_dfs.get_reversed_order();
+  for(auto i:rev_topological_sort)
+    std::cout << i << " ";
+  std::cout << std::endl;
+
+  SQTopologicalSort<DenseGraph> test_sq(G);
+  rev_topological_sort = test_sq.get_reversed_order();
   for(auto i:rev_topological_sort)
     std::cout << i << " ";
   std::cout << std::endl;

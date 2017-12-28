@@ -1,8 +1,9 @@
 #include <iostream>
+#include <algorithm>
 //#include "dense_graph.h"
 
 template <typename Graph>
-class TopologicalSort {
+class DFSTopologicalSort {
 
 private:
   const Graph &G;
@@ -22,7 +23,7 @@ private:
   }
 
 public:
-  TopologicalSort(const Graph& _G) : G(_G) {
+  DFSTopologicalSort(const Graph& _G) : G(_G) {
     count=0; count_p=0; depth=0;
     pre = std::vector<int>(G.v_count(), -1);
     post = std::vector<int>(G.v_count(), -1);
@@ -32,4 +33,9 @@ public:
   }
 
   std::vector<int> get_reversed_order () {return post_ordered;}
+  std::vector<int> get_order () {
+    std::vector<int> order = post_ordered;
+    std::reverse(order.begin(), order.end());
+    return order;
+  }
 };
